@@ -1,0 +1,71 @@
+#top-menu li {
+    display: inline;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 5px;
+    background: linear-gradient(to bottom, #fefcea, #f1da36);;
+}
+
+.simpsons {
+    float: left;
+    box-sizing: border-box;
+}
+
+.simpsons:hover {
+    border: 3px solid red;
+}
+
+#container {
+    width: 80%;
+}
+
+#bart {
+    min-width: 150px;
+    width: 15vw;
+}
+
+.selected {
+    border: 3px solid blue;
+}
+
+#lisa {
+    min-width: 50px;
+    width: 5vw;
+}
+
+#homer {
+    min-width: 110px;
+    width: 11vw;
+}
+
+#marge {
+    min-width: 130px;
+    width: 14vw;
+}
+
+#maggie {
+    height: 25vh;
+}
+
+#slider {
+    width: 30vh;
+    height: 30vh;
+    position: fixed;
+    top: 35%;
+    left: 100%;
+    margin-left: -3vh;
+    border: 2px solid;
+    border-radius: 10px;
+    transition: 500ms;
+}
+
+#slider:hover {
+    margin-left: -28vh;
+}
+
+#slider span {
+    font-size: 4vh;
+    margin-left: 5vh;
+}

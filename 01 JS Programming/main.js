@@ -204,7 +204,6 @@ function printChildrens(group, tab) {
     }
     for (var i = 0; i < subGroups.length; i++) {
         console.log(tab + groupToString(subGroups[i]));
-
         printChildrens(subGroups[i], tab + '  ');
     }
 }
@@ -245,7 +244,6 @@ function deleteAllChildrens(group) {
             deleteAllChildrens(subGroups[i]);
             deleteGroup(subGroups[i]);
     }
-
     deleteGroup(group);
 }
 
