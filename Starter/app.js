@@ -1,5 +1,6 @@
+var rl = require("readline-sync");
+var fs = require("fs");
 
-var rl = require('readline-sync');
 var nextId = 0;
 var root = createGroup("~");
 var currentGroup = root;
@@ -11,7 +12,10 @@ var Menu = {
     PRINT_ALL: 5,
     FIND: 6,
     DELETE: 7,
-    EXIT: 8
+    EXIT: 8,
+    SAVE: 9,
+    READ: 0,
+    LOAD_TEST_DATA: 10
 };
 
 function printMenu() {
@@ -24,9 +28,13 @@ function printMenu() {
     console.log("6) Find");
     console.log("7) Delete");
     console.log("8) Exit");
+    console.log("9) save");
+    console.log("0) read");
+    console.log("10) load test data");
 }
 
 function run() {
+
     while (true) {
         printMenu();
 
@@ -34,7 +42,7 @@ function run() {
         handleCommand(command);
     }
 }
-
+//why not switch construction?
 function handleCommand(line) {
     var command = parseInt(line);
 
@@ -62,6 +70,15 @@ function handleCommand(line) {
     else if (command == Menu.EXIT) {
         exit();
     }
+    else if (command == Menu.SAVE) {
+        save();
+    }
+    else if (command == Menu.READ) {
+        read("data.txt");
+    }
+    else if (command == Menu.LOAD_TEST_DATA) {
+        read("testData.txt");
+    }
 }
 
 function addNewContact() {
@@ -82,34 +99,32 @@ function addNewContact() {
 
 function addNewGroup() {
     var name = readNonEmptyString("Name: ");
-
     var group = createGroup(name);
     addItem(group);
 }
 
 function changeCurrentGroup() {
     if (currentGroup.parent) {
-        console.log('..');
+        console.log("..");
     }
     print();
     var name = readNonEmptyString("Name: ");
     try {
         changeGroup(name);
-        console.log("you in " + currentGroup + " group now");
+        print();
     }
-    catch (e){
+    catch (e) {
         console.log(e.message);
     }
 }
 
-function changeGroup(name){
+function changeGroup(name) {
+
     if (name == "..") {
-        if (currentGroup.parent) {
-            currentGroup = currentGroup.parent;
-        }
-        else {
+        if (currentGroup == root) {
             throw new Error("you already in root");
         }
+        currentGroup = currentGroup.parent;
     }
     else {
         var subGroup = findGroup(name);
@@ -130,6 +145,7 @@ function findGroup(name) {
 }
 
 function print() {
+    console.log("you in " + currentGroup.name + " group now");
     var items = currentGroup.items;
     for (var i = 0; i < items.length; i++) {
         if (items[i].isGroup) {
@@ -142,7 +158,7 @@ function print() {
 }
 
 function printAll() {
-    printAllItems(root, '');
+    printAllItems(root, "");
 }
 
 function printAllItems(group, tab) {
@@ -173,7 +189,7 @@ function find() {
 
 function getItemsByName(group, name) {
     var result = [];
-    if (group.name == name) {
+    if (group.name.toLowerCase().trim() == name.toLowerCase().trim()) {
         result.push(group);
     }
     var items = group.items;
@@ -182,7 +198,8 @@ function getItemsByName(group, name) {
             result = result.concat(getItemsByName(items[i], name));
         }
         else {
-            if (items[i].firstName == name || items[i].lastName == name) {
+            if (items[i].firstName.toLowerCase().trim() == name.toLowerCase().trim() ||
+                items[i].lastName.toLowerCase().trim() == name.toLowerCase().trim()) {
                 result.push(items[i]);
             }
         }
@@ -192,9 +209,9 @@ function getItemsByName(group, name) {
 
 function deleteItem() {
     var id = readNonEmptyString("enter id please ");
-    var deletedItem = getItemById(root, id);
+    var deletedItem = getItemById(id);
     if (!deletedItem) {
-        console.log('wrong id');
+        console.log("wrong id");
     }
     else {
         delItem(deletedItem);
@@ -205,26 +222,32 @@ function delItem(item) {
     var parent = item.parent;
     var items = parent.items;
     if (item.isGroup) {
-        if (currentGroup == item || getItemById(item, currentGroup.id)) {
+        if (currentGroup == item || findItemInGroupById(item, currentGroup.id)) {
             currentGroup = parent;
         }
     }
     for (var i = 0; i < items.length; i++) {
-        if (items[i] == group) {
+        if (items[i] == item) {
             items.splice(i, 1);
             return;
         }
     }
 }
 
-function getItemById(group, id) {
+function getItemById(id) {
+    if (id == 0) return root;
+    return findItemInGroupById(root, id);
+}
+
+function findItemInGroupById(group, id) {
+
     var items = group.items;
     for (var i = 0; i < items.length; i++) {
         if (items[i].id == id) {
             return items[i];
         }
         if (items[i].isGroup) {
-            var result = getItemById(items[i], id);
+            var result = findItemInGroupById(items[i], id);
             if (result) {
                 return result;
             }
@@ -236,21 +259,26 @@ function exit() {
     process.exit(0);
 }
 
-function createContact(firstName, lastName, phoneNumbers) {
+function createContact(firstName, lastName, phoneNumbers, id) {
+    if (id === undefined) {
+        id = generateNextId();
+    }
     var contact = {
-        id: generateNextId(),
+        id: id,
         firstName: firstName,
         lastName: lastName,
         phoneNumbers: phoneNumbers,
         type: 'Contact'
     };
-
     return contact;
 }
 
-function createGroup(name) {
+function createGroup(name, id) {
+    if (id === undefined) {
+        id = generateNextId();
+    }
     var group = {
-        id: generateNextId(),
+        id: id,
         name: name,
         items: [],
         type: 'Group',
@@ -291,25 +319,78 @@ function readNonEmptyString(message) {
     }
 }
 
+function bookToArray() {
+    var result = getPlaneArray(root);
+    result.push({currentGroupId: currentGroup.id});
+    result.push({nextId: nextId});
+    return result;
+}
+
 function getPlaneArray(item) {
     var planeObj = getPlaneObj(item);
     var result = [];
     result.push(planeObj);
-    for (var i = 0; i < planeObj.numberOfChildrens; i++) {
+    for (var i = 0; i < planeObj.childCount; i++) {
         result = result.concat(getPlaneArray(item.items[i]));
     }
     return result;
 }
 
 function getPlaneObj(item) {
-    var numberOfChildrens = (item.isGroup) ? item.items.length : 0;
-    return {
-        numberOfChildrens: numberOfChildrens,
-        data: item.toString()
+    var obj = {};
+    if (item.isGroup) {
+        obj.childCount = item.items.length;
+        obj.name = item.name;
+        obj.isGroup = true;
+    }
+    else {
+        obj.childCount = 0;
+        obj.firstName = item.firstName;
+        obj.lastName = item.lastName;
+        obj.phoneNumbers = item.phoneNumbers.join();
+    }
+    obj.id = item.id;
+    return obj;
+}
+
+function restoreFromPlaneArray(planeArray) {
+    var nextIndex = 0;
+    root = restoreNextItem();
+    currentGroup = getItemById(planeArray[++nextIndex].currentGroupId);
+    nextId = +planeArray[++nextIndex].nextId;
+
+    function restoreNextItem() {
+        var planeItem = planeArray[nextIndex];
+        if (!planeItem.isGroup) {
+            return createContact(planeItem.firstName, planeItem.lastName, planeItem.phoneNumbers.split(","), planeItem.id);
+        }
+        var group = createGroup(planeItem.name, planeItem.id);
+        for (var i = 0; i < planeItem.childCount; i++) {
+            nextIndex++;
+            var item = restoreNextItem();
+            item.parent = group;
+            group.items.push(item);
+        }
+        return group;
     }
 }
 
-run();
+function save() {
+    fs.writeFileSync("data.txt", JSON.stringify(bookToArray()));
+}
+
+function read(fileName) {
+    var text = fs.readFileSync(fileName, 'utf8');
+    restoreFromPlaneArray(JSON.parse(text));
+}
+
+function getRoot() {
+    return root;
+}
+
+function getCurrentGroup() {
+    return currentGroup;
+}
 
 module.exports.createContact = createContact;
 module.exports.createGroup = createGroup;
@@ -317,3 +398,7 @@ module.exports.addItem = addItem;
 module.exports.getPlaneArray = getPlaneArray;
 module.exports.delItem = delItem;
 module.exports.changeGroup = changeGroup;
+module.exports.getItemsByName = getItemsByName;
+module.exports.getRoot = getRoot;
+module.exports.getCurrentGroup = getCurrentGroup;
+module.exports.run = run;
