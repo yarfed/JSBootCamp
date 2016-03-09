@@ -1,0 +1,204 @@
+body {
+    font-size: medium;
+}
+
+.treeCSS,
+.treeCSS ul,
+.treeCSS li {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    list-style: none;
+}
+
+.treeCSS ul {
+    margin: 0 0 0 0.5em; /* вести линию вниз где-то с полбуквы родителя */
+}
+
+.treeCSS > li:not(:only-child),
+.treeCSS li li {
+    position: relative;
+    padding: .2em 0 0 1.2em; /* отступ до текста; для раскрывающегося списка в ряде случаев (в Хроме есть баг) padding-top (.2em) лучше указывать в px */
+}
+
+.treeCSS li:not(:last-child) {
+    border-left: 1px solid #ccc; /* толщина, цвет и стиль (вместо сплошной пунктирная или точечная) вертикальной линии */
+}
+
+.treeCSS li li:before,
+.treeCSS > li:not(:only-child):before { /* горизонтальная линия */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.1em; /* не более отступа до текста (1.2em) */
+    height: .7em; /* начинается приблизительно с половины высоты буквы (.5em + .2em) */
+    border-bottom: 1px solid #ccc;
+}
+
+.treeCSS li:last-child:before { /* вертикальная линия последнего пункта в каждом списке */
+    width: calc(1.1em - 1px); /* для перфекционистов */
+    border-left: 1px solid #ccc;
+}
+
+.treeCSS span {
+    cursor: pointer;
+}
+
+.selected {
+    background-color: lightgrey;
+}
+
+.left {
+    width: 20%;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+table {
+    border-collapse: collapse;
+    width: 70%;
+}
+#searchResultsPanel tr td:last-child{
+    display:none;
+}
+
+.right {
+    width: 70%;
+}
+
+nav {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+nav li {
+    float: left;
+    height: 2rem;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    height: 2rem;
+}
+
+nav li a {
+    display: block;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 100%;
+    line-height: 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: #069;
+    border-right: 1px solid #ccc;
+}
+
+nav li a:hover {
+    color: #c00;
+    background-color: #fff;
+}
+
+.column {
+    float: left;
+}
+
+.hidden {
+    display: none;
+}
+
+.form ul {
+    width: 80%;
+    list-style-type: none;
+    list-style-position: outside;
+    margin: 0;
+    padding: 0;
+}
+
+.form li {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.form li:first-child, .form li:last-child {
+    border-bottom: 1px solid #777;
+}
+
+.form h3 {
+    margin: 0;
+    display: inline;
+}
+
+.required_notification {
+    color: #d45252;
+    margin: 5px 0 0 0;
+    display: inline;
+    float: right;
+}
+
+.form label {
+    width: 150px;
+    margin-top: 3px;
+    display: inline-block;
+    float: left;
+    padding: 3px;
+}
+
+.form input {
+    height: 20px;
+    width: 220px;
+    padding: 5px 8px;
+    transition: padding .25s;
+}
+
+.form input:focus {
+    padding-right: 70px;
+}
+
+.form button {
+    margin-left: 156px;
+}
+
+#topContent {
+    width: 90%;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+#topContent * {
+    display: inline-block;
+    margin: 0;
+    height: 100%;
+}
+
+#topContent h2 {
+    margin: 0;
+
+}
+
+#topContent div {
+    position: absolute;
+    right: 0;
+}
+
+#topContent div * {
+    border-radius: 5px;
+}
