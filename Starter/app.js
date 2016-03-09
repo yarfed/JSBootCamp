@@ -37,7 +37,6 @@ function run() {
 
     while (true) {
         printMenu();
-
         var command = rl.question("Contact Book> ");
         handleCommand(command);
     }
