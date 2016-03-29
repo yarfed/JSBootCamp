@@ -1,3 +1,4 @@
+
 function init() {
     var nextId = 0;
     var root = createGroup("~");

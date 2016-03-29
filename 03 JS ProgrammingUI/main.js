@@ -1,6 +1,7 @@
 /**
  * Created by User on 03.03.2016.
  */
+"use strict";
 var book = init();
 loadDataFromLocalStorage();
 printTree();
@@ -155,7 +156,6 @@ function addContact(e) {
     var lastName = document.getElementById("addContactFormLastName");
     var tels = document.querySelectorAll("#addContactPanel .tel");
     var telephones = [];
-
     for (var i = 0; i < tels.length; i++) {
         var tel = tels[i].value;
         if (tel && tel != "") {

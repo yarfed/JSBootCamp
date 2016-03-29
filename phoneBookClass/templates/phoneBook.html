@@ -1,0 +1,76 @@
+<div class="owner"></div>
+<div class="topContent">
+    <div class="menu">
+        <ul>
+            <li><a href="#" class="upMenu">up</a></li>
+            <li><a href="#" class="addGroupMenu">add Group</a></li>
+            <li><a href="#" class="addContactMenu">add contact</a></li>
+        </ul>
+    </div>
+    <div class="search">
+        <form class="searchForm">
+            <input type="search" class="searchInput">
+            <input type="submit" value="search">
+        </form>
+    </div>
+</div>
+
+<div class="content">
+    <div class="groupTemplate">
+        <div class="row">
+            <a class="name" href="#"></a>
+            <button class="delete">Delete</button>
+        </div>
+    </div>
+    <div class="contactTemplate">
+        <div class="row">
+            <a class="firstName" href="#"></a>
+            <span class="lastName"></span>
+            <span class="telephone"></span>
+            <button class="delete">Delete</button>
+        </div>
+    </div>
+    <div class="addContactFormTemplate">
+        <form class="form">
+            <ul class="fields">
+                <li><label>firstName*</label>
+                    <input type="text" class="firstName" required>
+                </li>
+                <li>
+                    <label >lastName*</label>
+                    <input type="text" class="lastName" required>
+                </li>
+                <li class="telephoneField">
+                    <label>Tel</label>
+                    <input type="tel"  class="telephone" pattern="\+?[0-9\-\s]*">
+                </li>
+                <li class="addTelephone">
+                    <button type="button" >add Tel</button>
+                </li>
+                <li>
+                    <button class="submit" type="submit">Ok</button>
+                    <button class="cancel" type="button">Cancel</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div class="addGroupFormTemplate">
+        <form class="form">
+            <ul>
+                <li><label>Name*</label>
+                    <input type="text" class="name" required>
+                </li>
+                <li>
+                    <button class="submit" type="submit">Ok</button>
+                    <button class="cancel" type="button">Cancel</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+<div class="modal_form">
+    <span>are you sure?</span>
+    <button class="cancel" >Cancel</button>
+    <button class="ok">Ok</button>
+</div>
+<div class="overlay"></div>
