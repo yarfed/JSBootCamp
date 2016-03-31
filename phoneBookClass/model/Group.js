@@ -2,18 +2,18 @@
  * Created by User on 17.03.2016.
  */
 "use strict";
-function Group(id, name){
-    Item.call(this,id);
-    this.name=name;
-    this.items=[];
-    this.type="group";
+function Group(id, name) {
+    Item.call(this, id);
+    this.name = name;
+    this.items = [];
+    this.type = "group";
 }
-Group.prototype=Object.create(Item.prototype);
-Group.prototype.addItem=function(item){
+Group.prototype = Object.create(Item.prototype);
+Group.prototype.addItem = function (item) {
     this.items.push(item);
-    item.parent=this;
+    item.parent = this;
 };
-Group.prototype.findItems=function(searchQuery){
+Group.prototype.findItems = function (searchQuery) {
     var result = [];
     if (this.name.toLowerCase().trim() == searchQuery.toLowerCase().trim()) {
         result.push(this);
@@ -32,17 +32,19 @@ Group.prototype.findItems=function(searchQuery){
     }
     return result;
 };
-Group.prototype.getItemById= function (id) {
+Group.prototype.getItemById = function (id) {
     var items = this.items;
-    if (this.id==id){return this}
+    if (this.id == id) {
+        return this
+    }
     for (var i = 0; i < items.length; i++) {
         if (items[i].name) {
-            var result =items[i].getItemById(id);
+            var result = items[i].getItemById(id);
             if (result) {
                 return result;
             }
         }
-        else{
+        else {
         }
     }
 };

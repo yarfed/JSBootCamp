@@ -4,7 +4,7 @@
 function SearchResult(searchRequest) {
     this.parent = null;
     this.name = "search request: " + searchRequest;
-    this.request=searchRequest;
+    this.request = searchRequest;
     this.items = [];
     this.type = "search";
 }
