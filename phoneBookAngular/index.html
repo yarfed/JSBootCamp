@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="col-xs-10 col-xs-offset-1" ng-controller="NavigationController as ctrl">
+        <nav role="navigation" class="navbar navbar-default">
+            <div class="navbar-left">
+                <div class="navbar-brand">
+                    <span class="glyphicon glyphicon-phone-alt"></span>
+                </div>
+                <button href="#" class="btn btn-default navbar-btn" ng-click="ctrl.viewService.currentView='1'">
+                    <span class="glyphicon glyphicon-level-up"></span>
+                </button>
+                <button href="#" class="btn btn-default navbar-btn" ng-click="ctrl.viewService.currentView='addGroup'">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                </button>
+                <button href="#" class="btn btn-default navbar-btn"
+                        ng-click="ctrl.viewService.currentView='addContact'">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-user"></span>
+                </button>
+            </div>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="search" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </form>
+        </nav>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1" ng-controller="AddGroupController as ctrl"
+         ng-show="ctrl.viewService.currentView=='addGroup'">
+        <div class="col-xs-5 col-xs-offset-1 panel panel-default">
+            <form class="form  panel-body" ng-submit="ctrl.submit($event)">
+                <div class="form-group">
+                    <label for="inputName">Name</label>
+                    <input type="text" class="form-control" id="inputName"
+                           placeholder="friends, work, etc..." ng-model="ctrl.name" required>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1" ng-controller="AddContactController as ctrl"
+         ng-show="ctrl.viewService.currentView=='addContact'">
+        <div class="panel panel-default">
+            <form class="form  panel-body" ng-submit="ctrl.submit($event)">
+                <div class="form-group">
+                    <label for="inputFirstName">First Name*</label>
+                    <input type="text" class="form-control" id="inputFirstName"
+                           placeholder="Vasya" ng-model="ctrl.firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputLastName">Last Name*</label>
+                    <input type="text" class="form-control" id="inputLastName"
+                           placeholder="Pupkin" ng-model="ctrl.lastName" required>
+                </div>
+                <div class="form-group form-inline" ng-repeat="tel in ctrl.telephones track by $index">
+                    <label>Telephone*</label>
+                    <input type="tel" class="form-control"
+                            ng-model="ctrl.telephones[$index]" pattern="\+?[0-9\-\s]*" required>
+                </div>
+                <div class="form-group" >
+                    <span class="glyphicon glyphicon-plus btn btn-success" ng-click="ctrl.addTel()"></span>
+                    <span class="glyphicon glyphicon-minus btn btn-danger" ng-click="ctrl.removeTel()"></span>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1" ng-show="ctrl.viewService.currentView=='three'">3</div>
+    <div class="col-xs-10 col-xs-offset-1" ng-show="ctrl.viewService.currentView=='fore'">4</div>
+
+</div>
+<script src="lib/jquery-1.12.2.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="service/ViewService.js"></script>
+<script src="controller/NavigationController.js"></script>
+<script src="controller/AddGroupController.js"></script>
+<script src="controller/AddContactController.js"></script>
+
+</body>
+</html>
