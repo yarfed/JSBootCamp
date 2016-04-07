@@ -1,0 +1,5 @@
+[
+{"firstName":"John", "lastName":"Doe","type":"contact","parentId":"0"},
+{"firstName":"Anna", "lastName":"Smith","type":"contact","parentId":"0"},
+{"firstName":"Peter","lastName":"Jones","type":"contact","parentId":"0"}
+]
