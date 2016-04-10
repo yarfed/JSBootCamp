@@ -12,29 +12,26 @@
 
     NavigationController.prototype.upHandler = function () {
         var currentView = this.viewService.currentView;
-        var currentItem = this.viewService.currentGroup;
+        var currentGroup = this.viewService.currentGroup;
 
         if (currentView == 'addGroup' || currentView == 'addContact') {
             console.log("not allow");
             return;
         }
 
-        if (currentView == 'group' && currentItem.id == 0) {
+        if (currentView == 'group' && currentGroup.id == 0) {
             console.log("top level");
             return;
         }
 
         if (currentView =='group') {
-            this.viewService.currentGroup = this.dataService.itemsIndex[currentItem.parentId];
-            this.viewService.breadCrumbs.pop();
+            this.viewService.currentGroup = this.dataService.getItem(currentGroup.parentId);
         }
 
         if (currentView =='contact') {
-            this.viewService.currentGroup = this.dataService.itemsIndex[this.viewService.contact.parentId];
-            //need create breadcrumbs
+            this.viewService.currentGroup = this.dataService.getItem(this.viewService.contact.parentId);
         }
 
-        this.viewService.currentView = 'group';
         this.scope.$broadcast("showCurrentGroup");
     };
 

@@ -22,7 +22,7 @@ app.use('/api', router);
 router.route('/items')
 
     .get(function (req, res) {
-       res.send(dataService.getAll());
+        res.send(dataService.getAll());
     })
 
     .post(function (req, res) {
@@ -47,7 +47,7 @@ router.route('/items/:id')
     })
 
     .delete(function (req, res) {
-
+        res.send(dataService.del(req.params.id));
     });
 
 

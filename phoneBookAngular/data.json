@@ -3,49 +3,5 @@
     "id": 0,
     "name": "root",
     "type": "group"
-  },
-  {
-    "id": 1,
-    "name": "eee",
-    "parentId": 0,
-    "type": "group"
-  },
-  {
-    "id": 2,
-    "firstName": "eee",
-    "lastName": "eee",
-    "parentId": 1,
-    "phones": [
-      "222"
-    ],
-    "type": "contact"
-  },
-  {
-    "id": 3,
-    "name": "dffff",
-    "parentId": 1,
-    "type": "group"
-  },
-  {
-    "id": 4,
-    "firstName": "ddd",
-    "lastName": "dd",
-    "parentId": 3,
-    "phones": [
-      "111"
-    ],
-    "type": "contact"
-  },
-  {
-    "id": 5,
-    "name": "eeeeeee",
-    "parentId": 3,
-    "type": "group"
-  },
-  {
-    "id": 6,
-    "name": "dddd",
-    "parentId": 0,
-    "type": "group"
   }
 ]

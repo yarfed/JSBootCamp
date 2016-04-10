@@ -45,7 +45,7 @@
         <div ng-show="ctrl.viewService.currentView=='group'||ctrl.viewService.currentView=='search'">
             <H4 ng-show="ctrl.viewService.currentView=='group'">
                  <span ng-repeat="group in ctrl.viewService.breadCrumbs">
-                    {{group.name}} /
+                     <a href="#" ng-click="ctrl.showGroup(group)">{{group.name}}</a> /
                  </span>
             </H4>
             <H4 ng-show="ctrl.viewService.currentView=='search'">search result for: {{ctrl.request}}</H4>

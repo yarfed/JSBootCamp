@@ -29,12 +29,48 @@ function save(item) {
                 }
             });
         }
-        return fs.writeJson('data.json', data).then(function(){
+        return fs.writeJson('data.json', data).then(function () {
             return item;
         });
     });
 }
 
+
+function del(id) {
+
+    return fs.readJson('data.json', {encoding: 'utf8'}).then(function (data) {
+
+        delFromArray(id, data);
+
+        return fs.writeJson('data.json', data).then(function () {
+
+            return data;
+        });
+    });
+}
+function delFromArray(id, items) {
+    markToDelete(id, items);
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].id == id) {
+            items[i].deleted = true;
+        }
+    }
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].deleted) {
+            items.splice(i,1);
+            i--;
+        }
+    }
+}
+
+function markToDelete(id, items) {
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].parentId == id) {
+            markToDelete(items[i].id, items);
+            items[i].deleted = true;
+        }
+    }
+}
 function getNextId(data) {
     var id = 0;
     for (var i = 0; i < data.length; i++) {
@@ -44,7 +80,7 @@ function getNextId(data) {
 }
 //module.exports.get = get;
 module.exports.getAll = getAll;
-//module.exports.remove = remove;
+module.exports.del = del;
 module.exports.save = save;
 module.exports.init = init;
 //module.exports.update = update;

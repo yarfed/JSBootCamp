@@ -35,7 +35,7 @@
 
     DataService.prototype.getItem = function (id) {
 
-        if (id!=='undefined') {
+        if (id !== 'undefined') {
             return this.itemsIndex[id];
         }
     };
@@ -88,7 +88,7 @@
             });
 
         } else {
-            return self.$http({method: 'put', url: 'api/items/:' + item.id, data: item}).then(function () {
+            return self.$http({method: 'put', url: 'api/items/' + item.id, data: item}).then(function () {
                 self.items.forEach(function (oldItem, i) {
                     if (item.id == oldItem.id) {
                         self.items.splice(i, 1, item);
@@ -102,13 +102,12 @@
 
     DataService.prototype.deleteItem = function (item) {
         var self = this;
-        var childs = self.getChilds(item);
-        childs.forEach(function (item) {
-            self.deleteItem(item);
+
+        return self.$http({method: 'delete', url: 'api/items/' + item.id}).then(function (res) {
+            self.items = res.data;
+            console.log(self.items);
+            self.itemsIndex = self.getDataIndex(self.items);
         });
-        delete self.itemsIndex[item.id];
-        var index = self.items.indexOf(item);
-        self.items.splice(index, 1);
     };
 
 

@@ -11,9 +11,7 @@
         this.request = null;
 
         $scope.$on("showCurrentGroup", function () {
-            self.viewService.currentView = "group";
-            self.items = self.dataService.getChilds(viewService.currentGroup);
-            self.breadCrumbs();
+            self.showGroup(viewService.currentGroup);
         });
 
         $scope.$on("search", function (event, request) {
@@ -24,11 +22,11 @@
     }
 
     GroupViewController.prototype.breadCrumbs = function () {
-        var group=this.viewService.currentGroup;
-        this.viewService.breadCrumbs=[];
-        while (group){
+        var group = this.viewService.currentGroup;
+        this.viewService.breadCrumbs = [];
+        while (group) {
             this.viewService.breadCrumbs.push(group);
-            group=this.dataService.getItem(group.parentId);
+            group = this.dataService.getItem(group.parentId);
         }
         this.viewService.breadCrumbs.reverse();
     };
@@ -53,7 +51,9 @@
 
     GroupViewController.prototype.deleteItem = function (item) {
         var self = this;
-        this.dataService.deleteItem(item);
+        this.dataService.deleteItem(item).then(function () {
+            self.showGroup(self.viewService.currentGroup);
+        });
     };
 
     GroupViewController.prototype.submitGroup = function (e) {
@@ -73,7 +73,7 @@
         }
 
         this.dataService.addItem(self.viewService.contact).then(function () {
-            self.showContact(self.viewService.currentGroup);
+            self.showGroup(self.viewService.currentGroup);
         });
     };
 
