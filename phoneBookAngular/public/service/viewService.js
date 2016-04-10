@@ -4,7 +4,7 @@
 (function () {
     angular.module("myApp").value('viewService', {
         currentView: "group",
-        currentItem: null,
+        currentGroup: null,
         group:{},
         contact:{},
         breadCrumbs:[]

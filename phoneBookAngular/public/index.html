@@ -28,25 +28,31 @@
                     <span class="glyphicon glyphicon-user"></span>
                 </button>
             </div>
-            <form class="navbar-form navbar-left" role="search" ng-submit="ctrl.scope.$emit('search',ctrl.request);">
+            <form class="navbar-form navbar-left" role="search"
+                  ng-submit="ctrl.scope.$broadcast('search',ctrl.request);">
                 <div class="form-group">
-                    <input type="search" ng-model="ctrl.request" class="form-control" placeholder="Search">
+                    <input type="search" ng-model="ctrl.request" class="form-control" placeholder="Search" required>
                 </div>
                 <button type="submit" class="btn btn-default">
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
             </form>
         </nav>
-        {{ctrl.dataService.items}}<br>{{ctrl.dataService.itemsIndex}}<br>{{ctrl.viewService.currentItem}}
+       <!-- {{ctrl.dataService.items}}<br>{{ctrl.viewService.breadCrumbs}}-->
     </div>
 
     <div class="col-xs-10 col-xs-offset-1" ng-controller="groupViewController as ctrl">
         <div ng-show="ctrl.viewService.currentView=='group'||ctrl.viewService.currentView=='search'">
-            <H4>{{ctrl.viewService.currentItem.name}}</H4>
+            <H4 ng-show="ctrl.viewService.currentView=='group'">
+                 <span ng-repeat="group in ctrl.viewService.breadCrumbs">
+                    {{group.name}} /
+                 </span>
+            </H4>
+            <H4 ng-show="ctrl.viewService.currentView=='search'">search result for: {{ctrl.request}}</H4>
             <ul>
                 <li ng-repeat="item in ctrl.items">
-                    <a ng-if="item.type=='group'" href="#" ng-click="ctrl.showItem(item)">{{item.name}}</a>
-                    <a ng-if="item.type=='contact'" href="#" ng-click="ctrl.showItem(item)">
+                    <a ng-if="item.type=='group'" href="#" ng-click="ctrl.showGroup(item)">{{item.name}}</a>
+                    <a ng-if="item.type=='contact'" href="#" ng-click="ctrl.showContact(item)">
                         {{item.firstName}} {{item.lastName}} {{item.phones.join()}}
                     </a>
                     <span class="glyphicon glyphicon-remove" ng-click="ctrl.deleteItem(item)"
@@ -96,7 +102,7 @@
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                     <button type="button" class="btn btn-default"
-                            ng-click="ctrl.cancel()">Cancel
+                            ng-click="ctrl.viewService.currentView='group'">Cancel
                     </button>
                 </form>
             </div>
