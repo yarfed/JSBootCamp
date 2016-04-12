@@ -36,7 +36,6 @@ function save(item) {
     });
 }
 
-
 function del(id) {
 
     return fs.readJson('data.json', {encoding: 'utf8'}).then(function (data) {
@@ -46,6 +45,7 @@ function del(id) {
         });
     });
 }
+
 function delFromArray(id, items) {
     markToDelete(id, items);
     for (var i = 0; i < items.length; i++) {

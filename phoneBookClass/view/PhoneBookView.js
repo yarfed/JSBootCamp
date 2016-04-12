@@ -23,12 +23,7 @@ PhoneBookView.prototype.search = function (e) {
     var searchRequest = (place.find(".searchInput").val()).trim();
     if (searchRequest) {
         var searchResult = new SearchResult(searchRequest);
-        if (this.currentItem.type == "search") {
-            searchResult.parent = this.currentItem.parent;
-        } else {
-            searchResult.parent = this.currentItem;
-        }
-
+        searchResult.parent = this.phoneBook.root;
         this.currentItem = searchResult;
         this.showCurrentItem();
     }
@@ -169,6 +164,7 @@ PhoneBookView.prototype.deleteConfirmClick = function (item, e) {
             if ($(e.target).hasClass("ok")) {
                 self.phoneBook.deleteItem(item);
                 self.phoneBook.saveToLocal();
+
                 self.showCurrentItem();
             }
         }
