@@ -42,7 +42,6 @@ angular.module('angular-confirm', ['ui.bootstrap'])
             if ('templateUrl' in settings && 'template' in settings) {
                 delete settings.template;
             }
-
             settings.resolve = {
                 data: function () {
                     return data;

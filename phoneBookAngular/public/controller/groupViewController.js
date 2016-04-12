@@ -52,7 +52,21 @@
     GroupViewController.prototype.deleteItem = function (item) {
         var self = this;
         this.dataService.deleteItem(item).then(function () {
-            self.showGroup(self.viewService.currentGroup);
+            if (self.viewService.currentView=='group'){
+                self.showGroup(self.viewService.currentGroup);
+            } else {
+
+                var breadCrumbs=self.viewService.breadCrumbs;
+                for (var i=0;i<breadCrumbs.length;i++){
+                    if (breadCrumbs[i]==item){
+                        self.viewService.currentGroup=self.dataService.getItem(item.parentId);
+                        self.breadCrumbs( self.viewService.currentGroup);
+                        break;
+                    }
+                }
+                self.search(self.request);
+            }
+
         });
     };
 
@@ -86,7 +100,6 @@
             this.viewService.contact.phones.pop();
         }
     };
-
 
     angular.module("myApp").controller("groupViewController", GroupViewController);
 })();

@@ -4,7 +4,8 @@ ul {
     list-style-type: none;
     height: 2rem;
 }
-.glyphicon-remove{
+
+.glyphicon-remove {
     cursor: pointer;
-    color:red;
+    color: red;
 }

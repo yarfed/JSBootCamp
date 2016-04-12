@@ -38,16 +38,16 @@
                 </button>
             </form>
         </nav>
-       <!-- {{ctrl.dataService.items}}<br>{{ctrl.viewService.breadCrumbs}}-->
+        <!-- {{ctrl.dataService.items}}<br>{{ctrl.viewService.breadCrumbs}}-->
     </div>
 
     <div class="col-xs-10 col-xs-offset-1" ng-controller="groupViewController as ctrl">
         <div ng-show="ctrl.viewService.currentView=='group'||ctrl.viewService.currentView=='search'">
-            <H4 ng-show="ctrl.viewService.currentView=='group'">
+
                  <span ng-repeat="group in ctrl.viewService.breadCrumbs">
                      <a href="#" ng-click="ctrl.showGroup(group)">{{group.name}}</a> /
                  </span>
-            </H4>
+
             <H4 ng-show="ctrl.viewService.currentView=='search'">search result for: {{ctrl.request}}</H4>
             <ul>
                 <li ng-repeat="item in ctrl.items">
@@ -78,6 +78,9 @@
         </div>
 
         <div ng-show="ctrl.viewService.currentView=='addContact'||ctrl.viewService.currentView=='contact'">
+             <span ng-repeat="group in ctrl.viewService.breadCrumbs">
+                     <a href="#" ng-click="ctrl.showGroup(group)">{{group.name}}</a> /
+                 </span>
             <div class="panel panel-default">
                 <form class="form  panel-body" ng-submit="ctrl.submitContact($event)">
                     <div class="form-group">
