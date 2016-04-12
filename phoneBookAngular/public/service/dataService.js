@@ -2,7 +2,7 @@
  * Created by User on 03.04.2016.
  */
 (function () {
-    "use strict";
+    'use strict';
     function DataService(viewService, $q, $http, $rootScope) {
         var self = this;
         this.$q = $q;
@@ -97,7 +97,6 @@
                 self.itemsIndex[item.id] = item;
             });
         }
-
     };
 
     DataService.prototype.deleteItem = function (item) {
@@ -110,6 +109,5 @@
         });
     };
 
-
-    angular.module("myApp").service('dataService', DataService);
+    angular.module('myApp').service('dataService', DataService);
 })();

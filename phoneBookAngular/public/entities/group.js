@@ -5,5 +5,5 @@ function Group(name,parentId){
     this.id=null;
     this.name=name;
     this.parentId=parentId;
-    this.type="group"
+    this.type='group'
 }

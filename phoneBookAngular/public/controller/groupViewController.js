@@ -2,7 +2,7 @@
  * Created by User on 05.04.2016.
  */
 (function () {
-    "use strict";
+   'use strict';
     function GroupViewController(viewService, dataService, $scope) {
         var self = this;
         this.viewService = viewService;
@@ -10,11 +10,11 @@
         this.items = [];
         this.request = null;
 
-        $scope.$on("showCurrentGroup", function () {
+        $scope.$on('showCurrentGroup', function () {
             self.showGroup(viewService.currentGroup);
         });
 
-        $scope.$on("search", function (event, request) {
+        $scope.$on('search', function (event, request) {
             self.search(request)
         });
 
@@ -34,17 +34,17 @@
     GroupViewController.prototype.search = function (request) {
         this.items = this.dataService.search(request);
         this.request = request;
-        this.viewService.currentView = "search";
+        this.viewService.currentView = 'search';
     };
 
     GroupViewController.prototype.showContact = function (contact) {
         this.viewService.contact = angular.copy(contact);
-        this.viewService.currentView = "contact";
+        this.viewService.currentView = 'contact';
     };
 
     GroupViewController.prototype.showGroup = function (group) {
         this.items = this.dataService.getChilds(group);
-        this.viewService.currentView = "group";
+        this.viewService.currentView = 'group';
         this.viewService.currentGroup = group;
         this.breadCrumbs();
     };
@@ -52,15 +52,15 @@
     GroupViewController.prototype.deleteItem = function (item) {
         var self = this;
         this.dataService.deleteItem(item).then(function () {
-            if (self.viewService.currentView=='group'){
+            if (self.viewService.currentView == 'group') {
                 self.showGroup(self.viewService.currentGroup);
             } else {
 
-                var breadCrumbs=self.viewService.breadCrumbs;
-                for (var i=0;i<breadCrumbs.length;i++){
-                    if (breadCrumbs[i]==item){
-                        self.viewService.currentGroup=self.dataService.getItem(item.parentId);
-                        self.breadCrumbs( self.viewService.currentGroup);
+                var breadCrumbs = self.viewService.breadCrumbs;
+                for (var i = 0; i < breadCrumbs.length; i++) {
+                    if (breadCrumbs[i] == item) {
+                        self.viewService.currentGroup = self.dataService.getItem(item.parentId);
+                        self.breadCrumbs(self.viewService.currentGroup);
                         break;
                     }
                 }
@@ -101,5 +101,5 @@
         }
     };
 
-    angular.module("myApp").controller("groupViewController", GroupViewController);
+    angular.module('myApp').controller('groupViewController', GroupViewController);
 })();

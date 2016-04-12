@@ -1,5 +1,6 @@
 /**
  * Created by User on 08.04.2016.
+ *
  */
 'use strict';
 var fs = require('fs-promise');
@@ -39,11 +40,8 @@ function save(item) {
 function del(id) {
 
     return fs.readJson('data.json', {encoding: 'utf8'}).then(function (data) {
-
         delFromArray(id, data);
-
         return fs.writeJson('data.json', data).then(function () {
-
             return data;
         });
     });
@@ -57,7 +55,7 @@ function delFromArray(id, items) {
     }
     for (var i = 0; i < items.length; i++) {
         if (items[i].deleted) {
-            items.splice(i,1);
+            items.splice(i, 1);
             i--;
         }
     }
@@ -71,6 +69,7 @@ function markToDelete(id, items) {
         }
     }
 }
+
 function getNextId(data) {
     var id = 0;
     for (var i = 0; i < data.length; i++) {
@@ -78,9 +77,9 @@ function getNextId(data) {
     }
     return ++id;
 }
-//module.exports.get = get;
+
 module.exports.getAll = getAll;
 module.exports.del = del;
 module.exports.save = save;
 module.exports.init = init;
-//module.exports.update = update;
+

@@ -39,7 +39,7 @@ router.route('/init')
 router.route('/items/:id')
 
     .get(function (req, res) {
-
+//now it on client;
     })
 
     .put(function (req, res) {

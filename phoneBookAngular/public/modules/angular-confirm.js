@@ -1,5 +1,5 @@
 /**
- * Created by User on 06.04.2016.
+ * Stolen  by User on 06.04.2016.
  */
 (function () {
     "use strict";

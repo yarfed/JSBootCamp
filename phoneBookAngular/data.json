@@ -3,11 +3,5 @@
     "id": 0,
     "name": "root",
     "type": "group"
-  },
-  {
-    "id": 1,
-    "name": "fffff",
-    "parentId": 0,
-    "type": "group"
   }
 ]

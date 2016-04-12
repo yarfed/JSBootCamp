@@ -7,5 +7,5 @@ function Contact() {
     this.lastName = null;
     this.parentId = null;
     this.phones=[null];
-    this.type = "contact"
+    this.type = 'contact'
 }
