@@ -3,5 +3,35 @@
     "id": 0,
     "name": "root",
     "type": "group"
+  },
+  {
+    "id": 1,
+    "name": "rabota",
+    "parentId": 0,
+    "type": "group"
+  },
+  {
+    "id": 4,
+    "name": "gggg",
+    "parentId": 0,
+    "type": "group"
+  },
+  {
+    "id": 5,
+    "name": "test",
+    "parentId": 0,
+    "type": "group"
+  },
+  {
+    "id": 6,
+    "name": "test",
+    "parentId": 5,
+    "type": "group"
+  },
+  {
+    "id": 7,
+    "name": "ddd",
+    "parentId": 0,
+    "type": "group"
   }
 ]

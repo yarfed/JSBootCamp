@@ -1,0 +1,38 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/src/appModule.js" />
+        <item url="file://$PROJECT_DIR$/src/entities/group.js" />
+        <item url="file://$PROJECT_DIR$/src/components/app.js" />
+        <item url="file://$PROJECT_DIR$/src/components/contact.js" />
+        <item url="file://$PROJECT_DIR$/src/components/search.js" />
+        <item url="file://$PROJECT_DIR$/src/components/addGroup.js" />
+        <item url="file://$PROJECT_DIR$/src/service/dataService.js" />
+        <item url="file://$PROJECT_DIR$/src/appModuleConfig.js" />
+        <item url="file://$PROJECT_DIR$/src/components/group.js" />
+        <item url="file://$PROJECT_DIR$/src/components/menu.js" />
+        <item url="file://$PROJECT_DIR$/src/entities/contact.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/src/router.js" />
+      <root url="file://$PROJECT_DIR$/src/main.js" />
+      <root url="file://$PROJECT_DIR$/src/router.js" />
+      <root url="file://$PROJECT_DIR$/src/main.js" />
+      <root url="file://$PROJECT_DIR$/src/service/viewService.js" />
+      <root url="file://$PROJECT_DIR$/src/appModule.js" />
+      <root url="file://$PROJECT_DIR$/src/entities/group.js" />
+      <root url="file://$PROJECT_DIR$/src/components/app.js" />
+      <root url="file://$PROJECT_DIR$/src/components/contact.js" />
+      <root url="file://$PROJECT_DIR$/src/components/search.js" />
+      <root url="file://$PROJECT_DIR$/src/components/addGroup.js" />
+      <root url="file://$PROJECT_DIR$/src/service/dataService.js" />
+      <root url="file://$PROJECT_DIR$/src/appModuleConfig.js" />
+      <root url="file://$PROJECT_DIR$/src/components/group.js" />
+      <root url="file://$PROJECT_DIR$/src/components/menu.js" />
+      <root url="file://$PROJECT_DIR$/src/entities/contact.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
