@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <base href="/">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+          crossorigin="anonymous">
+</head>
+<body>
+<app class="container">
+</app>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.26/system.src.js"></script>
+<script>
+    System.defaultJSExtensions = true;
+    System.import("components/app");
+    System.config({
+        map: {
+            'angular': './lib/angular.js',
+            'text': './lib/text.js',
+            'css': './lib/css.js',
+            'router': "./lib//angular-route.js"
+        }
+    })
+</script>
+</body>
+</html>

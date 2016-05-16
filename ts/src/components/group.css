@@ -1,0 +1,9 @@
+group ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  height: 2rem; }
+
+group .glyphicon-remove {
+  cursor: pointer;
+  color: blue; }

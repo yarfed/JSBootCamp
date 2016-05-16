@@ -1,26 +1,22 @@
 /**
  * Created by User on 17.04.2016.
  */
-
-import {appModule} from "../appModule";
-
-class SearchComponent {
-    private $location;
-    private request;
-
-    constructor($location) {
+"use strict";
+var appModule_1 = require("../appModule");
+var SearchComponent = (function () {
+    function SearchComponent($location) {
         this.$location = $location;
     }
-
-    search() {
+    SearchComponent.prototype.search = function () {
         var url = this.$location.path();
         url = url.split('/search')[0];
         this.$location.url(url + '/search/' + this.request);
-    }
-}
-
-appModule.component('search', <any>{
+    };
+    return SearchComponent;
+}());
+appModule_1.appModule.component('search', {
     controller: SearchComponent,
     template: require('components/search.html!text'),
     styles: require('components/search.css!css')
 });
+//# sourceMappingURL=search.js.map

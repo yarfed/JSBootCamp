@@ -5,31 +5,20 @@
     "type": "group"
   },
   {
+    "parentId": "0",
+    "type": "contact",
+    "phones": [
+      "11111",
+      "22222"
+    ],
+    "firstName": "www",
+    "lastName": "weeee",
+    "id": 1
+  },
+  {
     "id": 2,
     "parentId": "0",
     "type": "group",
-    "name": "fffffff"
-  },
-  {
-    "id": 4,
-    "parentId": "2",
-    "type": "group",
-    "name": "jjj"
-  },
-  {
-    "parentId": "4",
-    "type": "contact",
-    "phones": [
-      "33"
-    ],
-    "firstName": "ff",
-    "lastName": "ff",
-    "id": 5
-  },
-  {
-    "id": 6,
-    "parentId": "0",
-    "type": "group",
-    "name": "ff"
+    "name": "1111"
   }
 ]

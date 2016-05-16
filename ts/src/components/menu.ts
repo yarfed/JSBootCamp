@@ -20,13 +20,8 @@ class MenuComponent {
         var id = this.$route.current.params.id;
         var contactId=this.$route.current.params.contactId;
         var request=this.$route.current.params.request;
-        console.log(id);
-        console.log(contactId);
-        console.log(request);
         if (request){
-
             if (contactId){
-
                 self.$location.url('group/' + id+'/contact/'+contactId);
                 return;
             } else{
